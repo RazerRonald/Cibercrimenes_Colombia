@@ -122,8 +122,9 @@ def construir_mapa_con_panel(
         include_plotlyjs="cdn",
         config={
             "responsive": True,
-            "displayModeBar": False,
-            "scrollZoom": False,
+            "displayModeBar": True,
+            "displaylogo": False,
+            "scrollZoom": True,
         },
         default_width="100%",
         default_height=f"{height}px",
@@ -1260,7 +1261,7 @@ def render_dashboard_principal(
 
     df_mapa = preparar_participacion_geografica(df_mapa)
 
-    fig_mapa = px.choropleth_mapbox(
+    fig_mapa = px.choropleth_map(
         df_mapa,
         geojson=geojson_col,
         locations="Codigo_DANE",
@@ -1272,7 +1273,7 @@ def render_dashboard_principal(
             [0, "#f4f6f9"], [0.5, "#00b4d8"], [1, "#1e3a5f"],
         ],
         range_color=(df_colombia["Casos"].min(), df_colombia["Casos"].max()),
-        mapbox_style="carto-darkmatter",
+        map_style="carto-darkmatter",
         zoom=zoom_mapa,
         center={"lat": centro_lat, "lon": centro_lon},
         opacity=0.82,
@@ -1353,7 +1354,7 @@ def render_dashboard_principal(
 
     df_ciudades = preparar_participacion_geografica(df_ciudades)
 
-    fig_mapa_ciudades = px.scatter_mapbox(
+    fig_mapa_ciudades = px.scatter_map(
         df_ciudades, lat="Lat_Ciudad", lon="Lon_Ciudad",
         size="Casos", color="Casos", hover_name="Ciudad",
         custom_data=["Departamento", "Casos", "Delito_Principal_Ciudad", "Pct_Seleccionado", "Pct_Resto"],
@@ -1361,7 +1362,7 @@ def render_dashboard_principal(
         range_color=(0, max(int(df_ciudades_mapa["Casos"].max()), 1)),
         size_max=34, zoom=zoom_ciudades,
         center={"lat": centro_lat_ciudades, "lon": centro_lon_ciudades},
-        opacity=0.88, mapbox_style="carto-darkmatter",
+        opacity=0.88, map_style="carto-darkmatter",
     )
     customdata_ciudades = list(
         zip(
