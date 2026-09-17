@@ -21,7 +21,7 @@ import pandas as pd
 
 # 1. Page config (DEBE ser la primera llamada a Streamlit)
 st.set_page_config(
-    page_title="Cibercrimen Colombia · Dashboard",
+    page_title="Ciberdelitos en Colombia",
     page_icon="🛡️",
     layout="wide",
     initial_sidebar_state="expanded",

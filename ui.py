@@ -1138,7 +1138,7 @@ def render_dashboard_principal(
     # ── HERO HEADER ──────────────────────────────────────────���────────────
     st.markdown(
         '<div class="hero">'
-        '<h1>Cibercrimen en Colombia</h1>'
+        '<h1>Ciberdelitos en Colombia</h1>'
         '<p>Análisis interactivo de denuncias por delitos informáticos registrados '
         'ante la Policía Nacional. Explora la distribución geográfica, tendencias '
         'históricas y los delitos más frecuentes en cada departamento.</p>'
@@ -1426,7 +1426,7 @@ def render_dashboard_principal(
     fig_barras = px.bar(
         df_top_display, y="Departamento", x="Casos", text="Casos", orientation="h",
         color="Casos",
-        color_continuous_scale=[[0, "#a8dce7"], [0.5, "#00b4d8"], [1, "#1e3a5f"]],
+        color_continuous_scale=[[0, "#a8dce7"], [0.5, "#00b4d8"], [1, "#5f7896"]],
         custom_data=["Delito_Principal_Display"],
     )
     fig_barras.update_traces(
@@ -1478,7 +1478,7 @@ def render_dashboard_principal(
     fig_linea.add_trace(go.Scatter(
         x=df_hist_linea["Año"], y=df_hist_linea["Casos"],
         mode="lines+markers",
-        line=dict(width=3, color="#818cf8", shape="spline", smoothing=0.8),
+        line=dict(width=3, color="#FFFFFF", shape="spline", smoothing=0.8),
         marker=dict(size=10, color="#6366f1", line=dict(width=2, color="#c7d2fe"), symbol="circle"),
         customdata=list(zip(df_hist_linea["Ciudad_Top"], df_hist_linea["Delito_Top"].map(truncateArticle))),
         hovertemplate=(
